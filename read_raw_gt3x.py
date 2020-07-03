@@ -29,11 +29,11 @@ def parse_arguments():
 	# define save folder where data should be stored. If not given, then save folder will be the working directory
 	parser.add_argument('-s', '--save', dest = 'save_folder', help = 'Folder location where extracted raw data should be saved. If folder does not exist, it will be created. If not provided, the same folder as defined by -fd will be used.')
 	# delete original .gt3x file (source file) after it has been unzipped
-	parser.add_argument('--delete_source', dest = 'delete_source_file', action = 'store_true', help = 'Delete the original .gt3x source file after its content is unzipped.')
+	parser.add_argument('-ds', '--delete_source', dest = 'delete_source_file', action = 'store_true', help = 'Delete the original .gt3x source file after its content is unzipped.')
 	# delete .zip files after extracting data from zip file
-	parser.add_argument('--delete_zip', dest = 'delete_zip_file', action='store_true', help = 'When the .gt3x files is unzipped, it creates a log.bin data. This file contains the raw acceleration data. After this data has been converted to a numpy array, it can be deleted by provided this argument.')
+	parser.add_argument('-dz', '--delete_zip', dest = 'delete_zip_file', action='store_true', help = 'When the .gt3x files is unzipped, it creates a log.bin data. This file contains the raw acceleration data. After this data has been converted to a numpy array, it can be deleted by provided this argument.')
 	# use parallel processing
-	parser.add_argument('--use_parallel', dest = 'use_parallel', action = 'store_true', help = 'When this argument is given, all .gt3x files will be processed in parallel.')
+	parser.add_argument('-up', '--use_parallel', dest = 'use_parallel', action = 'store_true', help = 'When this argument is given, all .gt3x files will be processed in parallel.')
 
 	# parse out the arguments and return
 	return parser.parse_args()
