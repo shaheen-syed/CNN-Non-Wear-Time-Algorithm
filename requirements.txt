@@ -1,0 +1,9 @@
+numpy
+pandas
+joblib
+psutil
+glob2
+tensorflow
+bitstring
+scipy
+resampy
