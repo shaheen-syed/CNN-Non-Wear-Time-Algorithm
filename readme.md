@@ -2,7 +2,12 @@
 A novel algorithm to detect non-wear time from raw acceleration data that can detect non-wear time episodes of any duration.
 
 See paper:
-'A novel algorithm to detect non-wear time from raw accelerometer data using convolutional neural networks'
+
+A novel algorithm to detect non-wear time from raw accelerometer data using convolutional neural networks
+
+Shaheen Syed, Bente Morseth, Laila A Hopstock, Alexander Horsch
+
+doi: https://doi.org/10.1101/2020.07.08.20148015
 
 ## Step 1) Read Actigraph .gt3x file to extract raw acceleration data
 The script read_raw_gt3x.py contains code to extract raw acceleration data from .gt3x files. Each .gt3x file is basically a zip file containing a log.bin and a info.txt file. The log.bin is a binary file which contains the actual acceleration values. The info.txt file contains the meta-data in text form. When the script is executed, it will create a numpy file that contains the raw data and a time vector.
