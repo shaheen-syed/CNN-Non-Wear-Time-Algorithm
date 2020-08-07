@@ -397,7 +397,7 @@ def cnn_nw_algorithm(raw_acc, hz, cnn_model_file, std_threshold = 0.004, distanc
 	if hz != 100:
 		logging.info(f'Sampling frequency of the data is {hz}Hz, should be 100Hz, starting resampling....')
 		# call resampling function
-		raw_acc = resample_acceleration(data = raw_acc, from_hz = hz, to_hz = 10, verbose = verbose)
+		raw_acc = resample_acceleration(data = raw_acc, from_hz = hz, to_hz = 100, verbose = verbose)
 		logging.info('Data resampled to 100hz')
 		# set sampling frequency to 100hz
 		hz = 100
