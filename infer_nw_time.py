@@ -45,8 +45,6 @@ if __name__ == "__main__":
 	"""
 	# standard deviation threshold in g
 	std_threshold = 0.004
-	# acceleration scale which convert int values to g values
-	acceleration_scale = 256.0
 	# merge distance to group two nearby candidate nonwear episodes
 	distance_in_min = 5
 	# define window length to create input features for the CNN model
@@ -136,8 +134,6 @@ if __name__ == "__main__":
 			save_csv(data = nw_data, name = 'non_wear_data_indexes', folder = os.path.dirname(file))
 			# save human readable start and stop timestamps as CSV file
 			save_csv(data = nw_data_timestamps, name = 'non_wear_data_timestamps', folder = os.path.dirname(file))
-
-			exit()
 		
 	else:
 		logging.warning('Folder argument not provided. Please specify the -fd or --folder argument which specifies where raw acceleration data is stored in numpy format.')
