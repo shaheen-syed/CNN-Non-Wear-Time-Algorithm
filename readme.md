@@ -14,7 +14,7 @@ The script read_raw_gt3x.py contains code to extract raw acceleration data from 
 
 ### Usage
 ```bash
-python3 read_raw_gt3x.py --fd /path to folder with .gtx files
+python3 read_raw_gt3x.py -fd /path to folder with .gtx files
 ```
 
 The script accepts the following arguments
@@ -30,7 +30,7 @@ The script accepts the following arguments
 For example, process all .gt3x files in folder /users/username/gt3x, delete the original .gt3x file, delete the extracted zip file, and process all files in parallel:
 
 ```bash
-python3 read_raw_gt3x.py --fd //users/username/gt3x -ds -dz -up
+python3 read_raw_gt3x.py -fd /users/username/gt3x -ds -dz -up
 ```
 
 ## Step 2) Infer non-wear time vectors from raw acceleration data using CNN method
@@ -39,7 +39,7 @@ The script infer_nw_time.py reads the raw data that was extracted from the .gt3x
 Note that the CNN model was trained with an accelerometer placed on the hip. Furthermore, it works with triaxial data sampled at 100hz. If the data has a different sampling frequency, let's say 30Hz, then the acceleration data will be resampled to 100hz. Please also note that resampled acceleration values and the effect of the inferred non-wear vectors have not been tested.
 
 ```bash
-python3 infer_nw_time.py --fd /path to folder with .gtx files
+python3 infer_nw_time.py -fd /path to folder with .gtx files
 ```
 
 The script accepts the following arguments
