@@ -10,7 +10,7 @@ from joblib import delayed
 
 # import functions
 from functions.helper_functions import set_start, set_end, read_directory, create_directory
-from functions.gt3x_functions import unzip_gt3x_file, extract_info, extract_log
+from gt3x import unzip_gt3x_file, extract_info, extract_log
 
 def parse_arguments():
 	"""

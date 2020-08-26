@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 # import functions
 from functions.helper_functions import set_start, set_end, read_directory, create_directory, save_csv
 from functions.raw_non_wear_functions import cnn_nw_algorithm
-from functions.gt3x_functions import create_time_array, rescale_log_data, extract_info
+from gt3x import create_time_array, rescale_log_data, extract_info
 
 def parse_arguments():
 	"""
