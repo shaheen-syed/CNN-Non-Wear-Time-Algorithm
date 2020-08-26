@@ -65,9 +65,3 @@ The script accepts the following arguments
 | :---:   | :-: | :-: |
 | -fd | --folder | Folder location where raw acceleration data in numpy format is saved in subfolders|
 
-## Installation
-
-```bash
-pip3 install -r requirements.txt
-```
-
