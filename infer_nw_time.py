@@ -81,6 +81,7 @@ if __name__ == "__main__":
 			data = np.load(file)
 			# extract raw acceleration data from numpy.
 			actigraph_acc = data['raw_data']
+
 			# read meta data from file
 			meta_data = data['meta_data']
 
@@ -90,7 +91,7 @@ if __name__ == "__main__":
 			# extract time data 
 			actigraph_time = data['time_data']
 			# convert time data to correct time series array with correct miliseconds values
-			actigraph_time = create_time_array(actigraph_time)
+			actigraph_time = create_time_array(actigraph_time, hz = int(meta_data['Sample_Rate']))
 			
 			"""
 				INFER NON-WEAR TIME

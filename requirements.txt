@@ -7,3 +7,4 @@ tensorflow>=2.0.0
 bitstring
 scipy
 resampy
+
