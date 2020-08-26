@@ -31,7 +31,7 @@ The script read_raw_gt3x.py contains code to extract raw acceleration data from 
 
 ### Usage
 ```bash
-python3 read_raw_gt3x.py -fd /path to folder with .gtx files
+python3 read_raw_gt3x.py -fd /path/to/folder/with/.gt3x/files
 ```
 
 The script accepts the following arguments
