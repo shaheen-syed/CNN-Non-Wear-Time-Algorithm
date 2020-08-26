@@ -10,7 +10,7 @@ from joblib import delayed
 
 # import functions
 from functions.helper_functions import set_start, set_end, read_directory, create_directory
-from gt3x import unzip_gt3x_file, extract_info, extract_log
+from gt3x import read_gt3x
 
 def parse_arguments():
 	"""
@@ -72,16 +72,18 @@ def process_gt3x_file(idx, total, file, save_folder, delete_source_file, delete_
 		save_folder = os.path.join(save_folder, subfolder)
 
 	# unzip .gt3x file and get the file location of the binary log.bin (which contains the raw data) and the info.txt which contains the meta-data
-	log_bin, info_txt = unzip_gt3x_file(f = file, save_location = save_folder, delete_source_file = delete_source_file)
+	# log_bin, info_txt = unzip_gt3x_file(f = file, save_location = save_folder, delete_source_file = delete_source_file)
 
-	# get meta data from info.txt file
-	meta_data = extract_info(info_txt)
+	# # get meta data from info.txt file
+	# meta_data = extract_info(info_txt)
 
-	# read raw data from binary data
-	log_data, time_data = extract_log(log_bin = log_bin, acceleration_scale = float(meta_data['Acceleration_Scale']), sample_rate = int(meta_data['Sample_Rate']), use_scaling = False)
+	# # read raw data from binary data
+	# log_data, time_data = extract_log(log_bin = log_bin, acceleration_scale = float(meta_data['Acceleration_Scale']), sample_rate = int(meta_data['Sample_Rate']), use_scaling = False)
+
+	log_data, time_data, meta_data = read_gt3x(f = file, save_location = save_folder, create_time = False, rescale_data = False, verbose = False)
 
 	# save log_data and time_data as numpy array
-	np.savez(file = os.path.join(save_folder, subfolder), raw_data = log_data, time_data = time_data)
+	np.savez(file = os.path.join(save_folder, subfolder), raw_data = log_data, time_data = time_data, meta_data = meta_data)
 
 	# if 'delete_zip_file' is set to True, then remove the unpacked log.bin data
 	if delete_zip_file:
