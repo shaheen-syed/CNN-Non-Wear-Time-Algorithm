@@ -6,11 +6,7 @@ import logging
 import resampy # to resample frequency
 import numpy as np
 from scipy import signal
-try:
-    from multiprocessing import cpu_count
-except ImportError:
-    def cpu_count():
-        return 1
+from multiprocessing import cpu_count
 
 try:
     from joblib import Parallel
