@@ -3,7 +3,8 @@ pandas
 joblib
 psutil
 glob2
-tensorflow
+tensorflow>=2.0.0
 bitstring
 scipy
 resampy
+gt3x>=0.0.2

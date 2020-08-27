@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 # import functions
 from functions.helper_functions import set_start, set_end, read_directory, create_directory, save_csv
 from functions.raw_non_wear_functions import cnn_nw_algorithm
-from functions.gt3x_functions import create_time_array, rescale_log_data, extract_info
+from gt3x import create_time_array, rescale_log_data, extract_info
 
 def parse_arguments():
 	"""
@@ -79,17 +79,19 @@ if __name__ == "__main__":
 
 			# read file as numpy array
 			data = np.load(file)
-			# read meta data from file
-			meta_data = extract_info(os.path.join(os.path.dirname(file), 'info.txt'))
 			# extract raw acceleration data from numpy.
 			actigraph_acc = data['raw_data']
+
+			# read meta data from file
+			meta_data = data['meta_data']
+
 			# convert acceleration values to g values
 			actigraph_acc = rescale_log_data(log_data = actigraph_acc, acceleration_scale = meta_data['Acceleration_Scale'])
 
 			# extract time data 
 			actigraph_time = data['time_data']
 			# convert time data to correct time series array with correct miliseconds values
-			actigraph_time = create_time_array(actigraph_time)
+			actigraph_time = create_time_array(actigraph_time, hz = int(meta_data['Sample_Rate']))
 			
 			"""
 				INFER NON-WEAR TIME

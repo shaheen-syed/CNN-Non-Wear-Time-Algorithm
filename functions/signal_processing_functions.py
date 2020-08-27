@@ -7,8 +7,14 @@ import resampy # to resample frequency
 import numpy as np
 from scipy import signal
 from multiprocessing import cpu_count
-from joblib import Parallel
-from joblib import delayed
+
+try:
+    from joblib import Parallel
+    from joblib import delayed
+except ImportError:
+    Parallel = None
+    delayed = None
+
 
 def apply_butterworth_filter(data, n, wn, btype, hz):
 	"""

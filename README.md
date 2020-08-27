@@ -9,12 +9,29 @@ Shaheen Syed, Bente Morseth, Laila A Hopstock, Alexander Horsch
 
 doi: https://doi.org/10.1101/2020.07.08.20148015
 
+### Installing Requirements
+
+First, make sure the requirements are installed.
+
+The `gt3x` package needs to be first installed via:
+
+```bash
+pip install git+https://github.com/muschellij2/gt3x.git#egg=gt3x
+````
+
+and then the rest of the packages can be installed via:
+
+```bash
+pip install -r requirements.txt
+```
+
+
 ## Step 1) Read Actigraph .gt3x file to extract raw acceleration data
 The script read_raw_gt3x.py contains code to extract raw acceleration data from .gt3x files. Each .gt3x file is basically a zip file containing a log.bin and a info.txt file. The log.bin is a binary file which contains the actual acceleration values. The info.txt file contains the meta-data in text form. When the script is executed, it will create a numpy file that contains the raw data and a time vector.
 
 ### Usage
 ```bash
-python3 read_raw_gt3x.py -fd /path to folder with .gtx files
+python3 read_raw_gt3x.py -fd /path/to/folder/with/.gt3x/files
 ```
 
 The script accepts the following arguments
@@ -47,10 +64,4 @@ The script accepts the following arguments
 | Argument  short| Argument long  | Description  |
 | :---:   | :-: | :-: |
 | -fd | --folder | Folder location where raw acceleration data in numpy format is saved in subfolders|
-
-## Installation
-
-```bash
-pip3 install -r requirements.txt
-```
 
