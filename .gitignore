@@ -3,6 +3,3 @@
 *.pyc
 __pycache__
 logs/
-*.gt3x
-data/
-read_data.py

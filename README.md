@@ -13,14 +13,6 @@ doi: https://doi.org/10.1101/2020.07.08.20148015
 
 First, make sure the requirements are installed.
 
-The `gt3x` package needs to be first installed via:
-
-```bash
-pip install git+https://github.com/muschellij2/gt3x.git#egg=gt3x
-````
-
-and then the rest of the packages can be installed via:
-
 ```bash
 pip install -r requirements.txt
 ```
@@ -31,7 +23,7 @@ The script read_raw_gt3x.py contains code to extract raw acceleration data from 
 
 ### Usage
 ```bash
-python3 read_raw_gt3x.py -fd /path/to/folder/with/.gt3x/files
+python3 read_raw_gt3x.py -fd /path to folder with .gt3x files
 ```
 
 The script accepts the following arguments
