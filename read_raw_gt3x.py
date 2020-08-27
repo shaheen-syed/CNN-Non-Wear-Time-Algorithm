@@ -72,7 +72,7 @@ def process_gt3x_file(idx, total, file, save_folder, delete_source_file, delete_
 		save_folder = os.path.join(save_folder, subfolder)
 
 	# unzip .gt3x file and get the file location of the binary log.bin (which contains the raw data) and the info.txt which contains the meta-data
-	# log_bin, info_txt = unzip_gt3x_file(f = file, save_location = save_folder, delete_source_file = delete_source_file)
+	# log_bin, info_txt, _ = unzip_gt3x_file(f = file, save_location = save_folder, delete_source_file = delete_source_file)
 
 	# # get meta data from info.txt file
 	# meta_data = extract_info(info_txt)
