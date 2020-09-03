@@ -71,6 +71,7 @@ def process_gt3x_file(idx, total, file, save_folder, delete_source_file, delete_
 	else:
 		save_folder = os.path.join(save_folder, subfolder)
 
+	
 	# unzip .gt3x file and get the file location of the binary log.bin (which contains the raw data) and the info.txt which contains the meta-data
 	# log_bin, info_txt = unzip_gt3x_file(f = file, save_location = save_folder, delete_source_file = delete_source_file)
 
@@ -80,14 +81,20 @@ def process_gt3x_file(idx, total, file, save_folder, delete_source_file, delete_
 	# # read raw data from binary data
 	# log_data, time_data = extract_log(log_bin = log_bin, acceleration_scale = float(meta_data['Acceleration_Scale']), sample_rate = int(meta_data['Sample_Rate']), use_scaling = False)
 
+	# if 'delete_zip_file' is set to True, then remove the unpacked log.bin data
+	# if delete_zip_file:
+	# 	os.remove(log_bin)
+
+	"""
+		The following code will use the package gt3x which contains updated code for older .gt3x formats. In case you want to use the functions within this repo, please use the above lines
+		which are now uncommented.
+	"""
+
 	log_data, time_data, meta_data = read_gt3x(f = file, save_location = save_folder, create_time = False, rescale_data = False, verbose = False)
 
 	# save log_data and time_data as numpy array
 	np.savez(file = os.path.join(save_folder, subfolder), raw_data = log_data, time_data = time_data, meta_data = meta_data)
 
-	# if 'delete_zip_file' is set to True, then remove the unpacked log.bin data
-	if delete_zip_file:
-		os.remove(log_bin)
 
 """
 	SCRIPT STARTS HERE
@@ -115,7 +122,6 @@ if __name__ == "__main__":
 		F = [x for x in read_directory(args.folder) if x[-4:] == 'gt3x']
 		logging.info(f'Found a total of {len(F)} .gt3x files to process')
 
-
 		# use parallel processing to speed up processing time
 		executor = Parallel(n_jobs = num_jobs, backend = 'multiprocessing')
 		# create tasks so we can execute them in parallel
@@ -123,12 +129,6 @@ if __name__ == "__main__":
 		# execute task
 		executor(tasks)
 
-		# # loop over each .gt3x file, extract binary data
-		# for i, f in enumerate(F):
-
-		
-
-		# 	process_gt3x_file(file = f, save_folder = args.save_folder, delete_source_file = args.delete_source_file, delete_zip_file = args.delete_zip_file)
 	else:
 		logging.warning('No folder argument given. Please specify a folder location where the .gt3x files are located. This can be done with the -fd or --folder argument')
 	
