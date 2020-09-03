@@ -61,11 +61,6 @@ The script accepts the following arguments
 Example Python code to get non-wear vectors from several published algorithms
 
 ```python
-"""
-
-
-"""
-
 import os
 import numpy as np
 from functions.raw_non_wear_functions import cnn_nw_algorithm, hees_2013_calculate_non_wear_time, raw_baseline_calculate_non_wear_time
