@@ -1,66 +1,9 @@
-# CNN non-wear time algorithm
-A novel algorithm to detect non-wear time from raw acceleration data that can detect non-wear time episodes of any duration.
-
-See paper:
-
-A novel algorithm to detect non-wear time from raw accelerometer data using convolutional neural networks
-
-Shaheen Syed, Bente Morseth, Laila A Hopstock, Alexander Horsch
-
-doi: https://doi.org/10.1101/2020.07.08.20148015
-
-### Installing Requirements
-
-First, make sure the requirements are installed.
-
-```bash
-pip install -r requirements.txt
-```
-
-
-## Step 1) Read Actigraph .gt3x file to extract raw acceleration data
-The script read_raw_gt3x.py contains code to extract raw acceleration data from .gt3x files. Each .gt3x file is basically a zip file containing a log.bin and a info.txt file. The log.bin is a binary file which contains the actual acceleration values. The info.txt file contains the meta-data in text form. When the script is executed, it will create a numpy file that contains the raw data and a time vector.
-
-### Usage
-```bash
-python3 read_raw_gt3x.py -fd /path to folder with .gt3x files
-```
-
-The script accepts the following arguments
-
-| Argument  short| Argument long  | Description  |
-| :---:   | :-: | :-: |
-| -fd | --folder | Folder location where one or several .gt3x files are stored. |
-| -s | --save | Folder location where extracted raw data should be saved. If folder does not exist, it will be created. If not provided, the same folder as defined by -fd will be used. |
-| -ds | --delete_source | Delete the original .gt3x source file after its content is unzipped. |
-| -dz | --delete_zip | When the .gt3x files is unzipped, it creates a log.bin data. This file contains the raw acceleration data. After this data has been converted to a numpy array, it can be deleted by provided this argument.|
-| -up | --use_parallel| When this argument is given, all .gt3x files will be processed in parallel.|
-
-For example, process all .gt3x files in folder /users/username/gt3x, delete the original .gt3x file, delete the extracted zip file, and process all files in parallel:
-
-```bash
-python3 read_raw_gt3x.py -fd /users/username/gt3x -ds -dz -up
-```
-
-## Step 2) Infer non-wear time vectors from raw acceleration data using CNN method
-The script infer_nw_time.py reads the raw data that was extracted from the .gt3x files (see step 1) and uses the CNN non-wear time algorithm to infer non-wear vectors and two files containing the start and stop indexes and timestamps of each non-wear episode.
-
-Note that the CNN model was trained with an accelerometer placed on the hip. Furthermore, it works with triaxial data sampled at 100hz. If the data has a different sampling frequency, let's say 30Hz, then the acceleration data will be resampled to 100hz. Please also note that resampled acceleration values and the effect of the inferred non-wear vectors have not been tested.
-
-```bash
-python3 infer_nw_time.py -fd /path to folder with .gtx files
-```
-
-The script accepts the following arguments
-
-| Argument  short| Argument long  | Description  |
-| :---:   | :-: | :-: |
-| -fd | --folder | Folder location where raw acceleration data in numpy format is saved in subfolders|
-
-## Examples
+"""
 Example Python code to get non-wear vectors from several published algorithms
 
-```python
+If you have a raw .gt3x file, please first use the above code to extract the raw data
+"""
+
 import os
 import numpy as np
 from functions.raw_non_wear_functions import cnn_nw_algorithm, hees_2013_calculate_non_wear_time, raw_baseline_calculate_non_wear_time
@@ -127,5 +70,3 @@ Authors : Shaheen Syed, Bente Morseth, Laila A Hopstock, Alexander Horsch
 xyz_nw = raw_baseline_calculate_non_wear_time(raw_acc = raw_acc, std_threshold = 0.004, min_interval = 90, hz = hz, use_vmu = False, nwt_encoding = nwt_encoding, wt_encoding = wt_encoding)
 # VMY baseline method
 vmu_nw = raw_baseline_calculate_non_wear_time(raw_acc = raw_acc, std_threshold = 0.004, min_interval = 105, hz = hz, use_vmu = True, nwt_encoding = nwt_encoding, wt_encoding = wt_encoding)
-
-```
