@@ -79,6 +79,8 @@ if __name__ == "__main__":
 
 			# read file as numpy array
 			data = np.load(file)
+			data.allow_pickle = True;
+
 			# extract raw acceleration data from numpy.
 			actigraph_acc = data['raw_data']
 
