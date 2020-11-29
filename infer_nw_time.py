@@ -79,11 +79,15 @@ if __name__ == "__main__":
 
 			# read file as numpy array
 			data = np.load(file)
+			data.allow_pickle = True;
+
 			# extract raw acceleration data from numpy.
 			actigraph_acc = data['raw_data']
 
 			# read meta data from file
 			meta_data = data['meta_data']
+			if type(meta_data) is np.ndarray:
+				meta_data = meta_data.tolist()
 
 			# convert acceleration values to g values
 			actigraph_acc = rescale_log_data(log_data = actigraph_acc, acceleration_scale = meta_data['Acceleration_Scale'])
