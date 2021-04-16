@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
 	# set the logger and start time
 	tic, process, logging = set_start()
-	
+
 	# pars command line arguments
 	args = parse_arguments()
 
@@ -78,35 +78,35 @@ if __name__ == "__main__":
 			"""
 
 			# read file as numpy array
-			data = np.load(file)
+			data = np.load(file, allow_pickle=True)
 			# extract raw acceleration data from numpy.
 			actigraph_acc = data['raw_data']
 
 			# read meta data from file
-			meta_data = data['meta_data']
+			meta_data = data['meta_data'].item()
 
 			# convert acceleration values to g values
 			actigraph_acc = rescale_log_data(log_data = actigraph_acc, acceleration_scale = meta_data['Acceleration_Scale'])
 
-			# extract time data 
+			# extract time data
 			actigraph_time = data['time_data']
 			# convert time data to correct time series array with correct miliseconds values
 			actigraph_time = create_time_array(actigraph_time, hz = int(meta_data['Sample_Rate']))
-			
+
 			"""
 				INFER NON-WEAR TIME
 			"""
 			# call function to infer non-wear time
 			nw_vector, nw_data = cnn_nw_algorithm(	raw_acc = actigraph_acc,
 													hz = int(meta_data['Sample_Rate']),
-													cnn_model_file = cnn_model_file, 
+													cnn_model_file = cnn_model_file,
 													std_threshold = std_threshold,
 													distance_in_min = distance_in_min,
 													episode_window_sec = episode_window_sec,
 													edge_true_or_false = edge_true_or_false,
 													start_stop_label_decision = start_stop_label_decision
 													)
-			
+
 			"""
 				POST PROCESS DATA
 			"""
@@ -136,7 +136,7 @@ if __name__ == "__main__":
 			save_csv(data = nw_data, name = 'non_wear_data_indexes', folder = os.path.dirname(file))
 			# save human readable start and stop timestamps as CSV file
 			save_csv(data = nw_data_timestamps, name = 'non_wear_data_timestamps', folder = os.path.dirname(file))
-		
+
 	else:
 		logging.warning('Folder argument not provided. Please specify the -fd or --folder argument which specifies where raw acceleration data is stored in numpy format.')
 
