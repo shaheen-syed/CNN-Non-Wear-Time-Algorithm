@@ -66,7 +66,7 @@ import numpy as np
 from functions.raw_non_wear_functions import cnn_nw_algorithm, hees_2013_calculate_non_wear_time, raw_baseline_calculate_non_wear_time
 
 # read raw acceleration from numpy array. Since the data was not scaled, we are dividing it by the acceleration scale to obtain acceleration values in gravity units
-raw_acc = np.load(file = os.path.join(os.sep, 'Users', 'shaheen.syed', 'PA', 'acceleration.npz'))['raw_data'] / 256.
+raw_acc = np.load(file = os.path.join(os.sep, 'Users', 'shaheen.syed', 'PA', 'acceleration.npz'), allow_pickle=True)['raw_data'] / 256.
 # how to encode wear time
 wt_encoding = 0
 # how to encode non-wear time
