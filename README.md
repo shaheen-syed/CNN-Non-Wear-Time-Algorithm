@@ -7,7 +7,7 @@ A novel algorithm to detect non-wear time from raw accelerometer data using conv
 
 Shaheen Syed, Bente Morseth, Laila A Hopstock, Alexander Horsch
 
-doi: https://doi.org/10.1101/2020.07.08.20148015
+doi: https://doi.org/10.1038/s41598-021-87757-z
 
 ### Installing Requirements
 
@@ -79,7 +79,7 @@ hz = 100
 Get non-wear vector from the CNN non-wear algorithm
 
 Paper: A novel algorithm to detect non-wear time from raw accelerometer data using convolutional neural networks
-DOI : https://doi.org/10.1101/2020.07.08.20148015
+DOI : https://doi.org/10.1038/s41598-021-87757-z
 Authors : Shaheen Syed, Bente Morseth, Laila A Hopstock, Alexander Horsch
 """
 
@@ -119,7 +119,7 @@ hees_optimized_nw = hees_2013_calculate_non_wear_time(data = raw_acc, hz = hz, m
 Best performing baseline non-wear algorithms
 
 Paper: A novel algorithm to detect non-wear time from raw accelerometer data using convolutional neural networks
-DOI : https://doi.org/10.1101/2020.07.08.20148015
+DOI : https://doi.org/10.1038/s41598-021-87757-z
 Authors : Shaheen Syed, Bente Morseth, Laila A Hopstock, Alexander Horsch
 """
 
